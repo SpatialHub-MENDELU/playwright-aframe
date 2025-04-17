@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "outDir": "dist",
+    "allowJs": true,
+    "checkJs": false,
+    "downlevelIteration": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "importHelpers": false,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": false,
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "declaration": true,
+    "isolatedModules": true,
+    "preserveWatchOutput": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ]
+  },
+  "include": [
+    "src",
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "playwright-aframe",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "homepage": "https://github.com/SpatialHub-MENDELU/playwright-aframe",
+  "bugs": "https://github.com/SpatialHub-MENDELU/playwright-aframe/issues",
+  "scripts": {
+    "build": "npx tsc",
+    "lint": "npx @biomejs/biome check **/*.ts",
+    "lint:fix": "npx @biomejs/biome check --write **/*.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^22.14.1",
+    "typescript": "^5.8.3"
+  },
+  "peerDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/aframe": "^1.2.8",
+    "aframe": "^1.7.1"
+  }
+}

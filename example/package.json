@@ -1,0 +1,25 @@
+{
+  "name": "example-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "lint": "npx @biomejs/biome check **/*.ts",
+    "lint:fix": "npx @biomejs/biome check --write **/*.ts",
+    "preview": "vite preview",
+    "test:e2e": "cd ..; npm run build; cd example; npx playwright test --ui"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.14.1",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.3"
+  },
+  "dependencies": {
+    "aframe-environment-component": "^1.5.0",
+    "playwright-aframe": "file:../dist",
+    "spatial-design-system": "^1.6.9"
+  }
+}
