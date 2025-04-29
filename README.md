@@ -99,7 +99,7 @@ await aframe.getMaterialAttribute(elementLocator, 'color.isColor')
 
 ## Requirements
 - [Playwright](https://playwright.dev/) as a dependency (this library has Playwright as a peer dependency).
-- [A-Frame](https://aframe.io/)
+- [A-Frame](https://aframe.io/) as a dependency (this library has A-Frame as a peer dependency).
 
 ## License
 This library is licensed under the MIT License.
