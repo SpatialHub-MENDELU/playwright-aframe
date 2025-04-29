@@ -17,7 +17,7 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "@playwright/test": "^1.52.0",
+    "@playwright/test": "^1.51.1",
     "@types/aframe": "^1.2.8",
     "aframe": "^1.7.1"
   }
