@@ -52,6 +52,9 @@ export type ElementWithObject3DMap = HTMLElement &
             g: number
             b: number
             a?: number
+            clone: () => {
+              convertLinearToSRGB: () => RGB
+            }
           }
           opacity: number
         }

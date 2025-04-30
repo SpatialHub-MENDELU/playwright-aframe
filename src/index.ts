@@ -11,7 +11,7 @@ const getGeometry = (
 ): THREE.BufferGeometry | Record<string, unknown> | null => element?.object3DMap.mesh.geometry
 
 const getMaterialColor = (element: ElementWithObject3DMap) =>
-  element?.object3DMap?.mesh?.material?.color
+  element?.object3DMap?.mesh?.material?.color.clone().convertLinearToSRGB()
 const getMaterialOpacity = (element: ElementWithObject3DMap) =>
   element?.object3DMap?.mesh?.material?.opacity
 
