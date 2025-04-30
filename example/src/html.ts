@@ -4,7 +4,7 @@ import 'aframe-environment-component'
 import { trashItems, wasteBinConfiguration, wasteBinLabelConfiguration } from './constants'
 
 export const htmlContent = `
-<dialog open id="dialog">
+<dialog id="dialog">
   <div class="dialog-overlay"></div>
   <div class="dialog-container">
     <div class="dialog-content">
@@ -90,7 +90,7 @@ export const htmlContent = `
     scale="0.1 0.01 10"
     geometry="primitive: box"
     rotation="0 90 0"
-    material="color: #8bc34a; opacity: 0.5"
+    material="color: #6bc800; opacity: 0.5"
     id="start-line"
   ></a-entity>
 
