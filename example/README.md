@@ -26,4 +26,10 @@ The application uses the following 3D models, which are licensed under [CC-BY](h
 - **Cardboard Box Open** by Kenney via [Poly Pizza](https://poly.pizza/m/i1lr4yJFY0)
 - **Fruit Crate** by BlenderVoyage via [Poly Pizza](https://poly.pizza/m/aXulVWHOeV)
 
-These models are located in the `public/` directory and are used for testing and demonstration purposes.
+These 3D models are located in the `public/` directory and are used for testing and demonstration purposes.
+
+Icons are from [heroicons](https://heroicons.com)
+- newspaper
+- shopping-bag
+- trash
+- beaker

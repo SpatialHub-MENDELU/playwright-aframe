@@ -27,17 +27,19 @@ pnpm add playwright-aframe
 ```typescript
 import { aframe } from 'playwright-aframe'
 
-// Example: Check if an element is visible
-const isVisible = await aframe.isVisible(elementLocator)
+const locator = page.locator('any-selector')
 
-// Example: Set camera position
-await aframe.setCameraPosition(cameraLocator, { x: 0, y: 1, z: 5 })
+// Example: Check if an element is visible
+const isVisible = await aframe.isVisible(locator)
+
+// Example: Set camera position - locator is any element in the scene. Camera will be found automatically in the scene
+await aframe.setCameraPosition(locator, { x: 0, y: 1, z: 5 })
 
 // Example: Look at an element
-await aframe.lookAtElement(targetLocator)
+await aframe.lookAtElement(locator)
 
 // Example: Get the geometry of an element - second argument is dot notation path
-await aframe.getMaterialAttribute(elementLocator, 'color.isColor')
+await aframe.getMaterialAttribute(locator, 'color.isColor')
 ```
 
 ## API Reference
@@ -77,16 +79,16 @@ await aframe.getMaterialAttribute(elementLocator, 'color.isColor')
   - Adjusts the camera to look at a specific 3D object.
 
 - **`setCameraPosition(element: Locator, position: { x: number; y: number; z: number }): Promise<THREE.Vector3>`**
-  - Sets the camera position in the scene.
+  - Sets the camera position in the scene. Accepts any locator in the scene. The camera will be found automatically.
 
 - **`setCameraRotation(element: Locator, rotation: { x: number; y: number; z: number }): Promise<void | undefined>`**
-  - Sets the camera rotation in the scene.
+  - Sets the camera rotation in the scene. Accepts any locator in the scene. The camera will be found automatically.
 
 - **`getCameraPosition(element: Locator): Promise<THREE.Vector3>`**
-  - Retrieves the current camera position.
+  - Retrieves the current camera position. Accepts any locator in the scene. The camera will be found automatically.
 
 - **`getCameraRotation(element: Locator): Promise<{ degrees: { x: number; y: number; z: number }; radians: { x: number; y: number; z: number } }>`**
-  - Retrieves the current camera rotation in both degrees and radians.
+  - Retrieves the current camera rotation in both degrees and radians. Accepts any locator in the scene. The camera will be found automatically.
 
 - **`clickOnElement(element: Locator): Promise<boolean>`**
   - Simulates a click event on a 3D object.

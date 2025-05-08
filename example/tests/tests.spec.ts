@@ -133,17 +133,17 @@ test('Finish line color', async ({ page }) => {
   const startLine = page.locator('#start-line')
   const color = await aframe.getMaterialColor(startLine)
 
-  expect(color.hex).toEqual('#428b11')
-  expect(color.hexWithAlpha).toEqual('#428b1180')
+  expect(color.hex).toEqual('#8bc34a')
+  expect(color.hexWithAlpha).toEqual('#8bc34a80')
   expect(color.rgb).toEqual({
-    r: 65.83662749225205,
-    g: 139.15973764719257,
-    b: 17.461933308340043,
+    b: 74.00157345106649,
+    g: 195.00084396116895,
+    r: 139.00138139820544,
   })
   expect(color.rgba).toEqual({
-    r: 65.83662749225205,
-    g: 139.15973764719257,
-    b: 17.461933308340043,
+    b: 74.00157345106649,
+    g: 195.00084396116895,
+    r: 139.00138139820544,
     a: 0.5,
   })
 })
