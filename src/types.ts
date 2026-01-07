@@ -31,7 +31,9 @@ export type ElementWithObject3D = HTMLElement &
                 string,
                 {
                   yawObject: {
-                    rotation: EulerRotation & { set: (x: number, y: number, z: number) => void }
+                    rotation: EulerRotation & {
+                      set: (x: number, y: number, z: number) => void
+                    }
                   }
                 }
               >

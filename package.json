@@ -7,18 +7,18 @@
   "homepage": "https://github.com/SpatialHub-MENDELU/playwright-aframe",
   "bugs": "https://github.com/SpatialHub-MENDELU/playwright-aframe/issues",
   "scripts": {
-    "build": "npx tsc",
-    "lint": "npx @biomejs/biome check **/*.ts",
-    "lint:fix": "npx @biomejs/biome check --write **/*.ts"
+    "build": "tsc",
+    "lint": "biome check ./src",
+    "lint:fix": "biome check --write ./src"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@types/node": "^22.15.3",
-    "typescript": "^5.8.3"
+    "@biomejs/biome": "^2.3.11",
+    "@types/node": "^25.0.3",
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "@playwright/test": "^1.51.1",
-    "@types/aframe": "^1.2.8",
+    "@playwright/test": "^1.57.0",
+    "@types/aframe": "^1.2.9",
     "aframe": "^1.7.1"
   }
 }

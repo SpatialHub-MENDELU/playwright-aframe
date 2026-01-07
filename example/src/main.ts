@@ -137,7 +137,9 @@ const listeners = () => {
 
     activeTrashElement?.setAttribute('data-sorted', 'true')
     const activeTrashElements = document.querySelectorAll('[data-trash-active]')
-    activeTrashElements.forEach(trashElement => trashElement.removeAttribute('data-trash-active'))
+    activeTrashElements.forEach(trashElement => {
+      trashElement.removeAttribute('data-trash-active')
+    })
   })
 }
 

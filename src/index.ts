@@ -51,7 +51,7 @@ const lookAtElement = async (element: Locator) => {
 
   const isLookedAt = await page.evaluate(
     element => {
-      const THREE = window['THREE']
+      const THREE = window.THREE
 
       const camera = (element as ElementWithObject3D)?.object3D.el?.sceneEl?.camera?.el?.object3D
 
@@ -67,7 +67,7 @@ const lookAtElement = async (element: Locator) => {
 
       box.setFromObject(target)
 
-      if (box.isEmpty() === false && !isNaN(box.min.x)) {
+      if (box.isEmpty() === false && !Number.isNaN(box.min.x)) {
         box.getCenter(center)
         distance = box.getBoundingSphere(sphere).radius
       } else {
@@ -96,7 +96,7 @@ const isInFoV = async (element: Locator) => {
 
   const isVisible: boolean = await page.evaluate(
     element => {
-      const THREE = window['THREE']
+      const THREE = window.THREE
 
       const boundingBox = new THREE.Box3().setFromObject((element as ElementWithObject3D).object3D)
 
@@ -189,13 +189,13 @@ const aframe = {
     const distanceBetween = Math.sqrt(dx * dx + dy * dy + dz * dz)
 
     const size = await firstElement.evaluate(el => {
-      const THREE = window['THREE']
+      const THREE = window.THREE
 
       const obj = (el as ElementWithObject3DMap).object3DMap.mesh
       return obj instanceof THREE.Object3D ? new THREE.Box3().setFromObject(obj) : null
     })
     const otherSize = await secondElement.evaluate(el => {
-      const THREE = window['THREE']
+      const THREE = window.THREE
 
       const obj = (el as ElementWithObject3DMap).object3DMap.mesh
       return obj instanceof THREE.Object3D ? new THREE.Box3().setFromObject(obj) : null
@@ -207,14 +207,14 @@ const aframe = {
 
     const sizeDistance =
       Math.sqrt(
-        Math.pow(size.max.x - size.min.x, 2) +
-          Math.pow(size.max.y - size.min.y, 2) +
-          Math.pow(size.max.z - size.min.z, 2)
+        (size.max.x - size.min.x) ** 2 +
+          (size.max.y - size.min.y) ** 2 +
+          (size.max.z - size.min.z) ** 2
       ) +
       Math.sqrt(
-        Math.pow(otherSize.max.x - otherSize.min.x, 2) +
-          Math.pow(otherSize.max.y - otherSize.min.y, 2) +
-          Math.pow(otherSize.max.z - otherSize.min.z, 2)
+        (otherSize.max.x - otherSize.min.x) ** 2 +
+          (otherSize.max.y - otherSize.min.y) ** 2 +
+          (otherSize.max.z - otherSize.min.z) ** 2
       )
 
     return distanceBetween < distance + sizeDistance
