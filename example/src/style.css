@@ -18,7 +18,7 @@ button {
 }
 
 button:hover {
-  background-color: #3e8e41 !important;
+  background-color: #3e8e41;
 }
 
 #score {
@@ -92,6 +92,7 @@ button:hover {
   overflow: auto;
   word-break: break-word;
   white-space: pre-wrap;
+  text-align: center;
 }
 
 .dialog-form {
