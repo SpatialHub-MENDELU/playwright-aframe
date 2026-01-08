@@ -1,0 +1,107 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version bump type'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+        default: patch
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump version and create tag
+        id: version
+        run: |
+          npm version ${{ inputs.version }}
+          echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+
+      - name: Push changes and tags
+        run: git push --follow-tags origin master
+
+      - name: Prepare changelog variables
+        id: changelog
+        run: |
+          echo "latest_release_tag=$(gh release view --json tagName --jq .tagName)" >> $GITHUB_OUTPUT
+          echo "current_release_tag=v$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Build changelog
+        uses: mikepenz/release-changelog-builder-action@v6
+        id: create-changelog
+        with:
+          fromTag: ${{ steps.changelog.outputs.latest_release_tag }}
+          toTag: ${{ steps.changelog.outputs.current_release_tag }}
+          configurationJson: |
+            {
+              "template": "#{{CHANGELOG}}\n\n## ⚠️ Uncategorized\n\n#{{UNCATEGORIZED}}",
+              "pr_template": "- _#{{TITLE}}_ • @#{{AUTHOR}} • ##{{NUMBER}}",
+              "categories": [
+                {
+                  "title": "## 🚀 Features",
+                  "labels": ["feat"]
+                },
+                {
+                  "title": "## 🐛 Fixes",
+                  "labels": ["fix"]
+                },
+                {
+                  "title": "## 🧹 Chores",
+                  "labels": ["chore"]
+                },
+                {
+                  "title": "## 🛠 Refactors",
+                  "labels": ["refactor"]
+                },
+                {
+                  "title": "## 📝 Docs",
+                  "labels": ["docs"]
+                },
+                {
+                  "title": "## 🧪 Tests",
+                  "labels": ["test"]
+                }
+              ],
+              "label_extractor": [{
+                "pattern": "^(feat|fix|chore|test|refactor|docs)",
+                "on_property": "title",
+                "method": "match",
+                "flags": "gmiu"
+              }]
+            }
+
+      - name: Create GitHub Release
+        env:
+          NOTES: ${{ steps.create-changelog.outputs.changelog }}
+        run: |
+          TAG=v$(node -p "require('./package.json').version")
+          gh release create $TAG --title "$TAG" --notes "$NOTES"
