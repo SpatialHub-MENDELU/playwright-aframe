@@ -2,3 +2,4 @@ src/
 example/
 biome.jsonc
 tsconfig.json
+.github/
