@@ -16,6 +16,10 @@ on:
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+permissions:
+  contents: write
+  pull-requests: read
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -101,4 +105,3 @@ jobs:
         run: |
           TAG=v$(node -p "require('./package.json').version")
           gh release create $TAG --title "$TAG" --notes "$NOTES"
-          echo "release_url=$GITHUB_SERVER_URL/${{ github.repository }}/releases/tag/$TAG" >> $GITHUB_OUTPUT
