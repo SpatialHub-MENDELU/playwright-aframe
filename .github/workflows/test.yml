@@ -1,0 +1,45 @@
+name: Test
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Build library
+        run: npm run build
+
+      - name: Install example dependencies
+        run: npm ci
+        working-directory: example
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+        working-directory: example
+
+      - name: Run Playwright tests
+        run: npx playwright test
+        working-directory: example
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v6
+        with:
+          name: playwright-report
+          path: example/playwright-report/
+          retention-days: 7
