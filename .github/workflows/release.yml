@@ -105,3 +105,13 @@ jobs:
         run: |
           TAG=v$(node -p "require('./package.json').version")
           gh release create $TAG --title "$TAG" --notes "$NOTES"
+
+      - name: Build package
+        run: |
+          npm ci
+          npm run build
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
